@@ -1,1 +1,1 @@
-I am adding this file to demonstrate how git works. Now adding more lines to demo commits and diff.
+Changing the contents of the file
