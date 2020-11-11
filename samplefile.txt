@@ -1,3 +1,0 @@
-removing the contents of the file
-
-adding some more contents to the file.
