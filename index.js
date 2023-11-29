@@ -6,7 +6,18 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+app.set('view engine', 'ejs'); // set the view engine to EJS
+app.use(bodyParser.json()); // specify the usage of JSON for parsing request body.
+
 const PORT = 80;
+
+const devDbConfig={
+	host: 'localhost',
+	port: 5432,
+	database: 'users',
+	user: 'postgres',
+	password: 'password'
+};
 
 const dbConfig = {
 	host: process.env.host,
@@ -19,21 +30,21 @@ const dbConfig = {
 const db = pgp(dbConfig);
 
 
-app.get('/', function(req, res){
-	res.send('<h1>Working</h1>');
+app.get('/', (req, res)=>{
+	res.render('pages/home');
 });
 
-app.get('/dbtest', (req,res)=>{
-	var query = `SELECT * FROM users;`;
+app.get('/welcome', (req, res)=>{
+	var query = `SELECT * FROM users LIMIT 1;`;
 	db.any(query)
 	.then( data =>{
-		res.send(data);
+		res.render('pages/welcome',{
+			username: data[0].username
+		})
 	})
 	.catch(err => {
 		res.send(err);
 	})
 })
 
-console.log(process.env.PORT);
-
-app.listen(process.env.PORT);
+app.listen(80);
