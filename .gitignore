@@ -1,4 +1,5 @@
-*.DS_Dtore
+.DS_Dtore
+
 # Logs
 logs
 *.log
