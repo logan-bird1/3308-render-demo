@@ -20,7 +20,7 @@ const devDbConfig={
 };
 
 const dbConfig = {
-	host: process.env.host,
+	host: process.env.config,
 	port: 5432,
 	database: process.env.database,
 	user: process.env.user,
